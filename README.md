@@ -20,8 +20,8 @@ I was getting into trouble:
 ## How to use it?
 You can simply download the shell script via:
 ```bash
- wget https://github.com/jschwarze/doctoolchain-wrapper/raw/master/doctoolchain.sh
-```
+ wget https://github.com/jschwarze/doctoolchain-wrapper/raw/master/doctoolchain.sh && chmod +x doctoolchain.sh
+``````
 Put it into a folder like ~/bin for getting it into your PATH.
 Now you are ready to initialize your first project:
 ```bash
