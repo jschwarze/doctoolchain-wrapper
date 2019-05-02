@@ -54,11 +54,28 @@ cd <your-documentation-folder>
 
 To push the documentation into a confluence, you have to configure the coordinates inside of 'Config.groovy'.
 Please ignore 'scrips/ConfluenceConfig.groovy', that file isn't used anymore.
+Here is an example, how to configure the confluence connection:
+
+```groovy
+confluence.with {
+    input = [
+            [ file: "build/html5/arc42-template.html" ],
+    ]
+    api = 'https://<your-confluence-host>/rest/api/'
+    ancestorId = '<page-id-of-parent-page>'
+    spaceKey = '<confluence-space-key>'
+    createSubpages = true
+    pagePrefix = ''
+    credentials = "<username>:<password>".bytes.encodeBase64().toString()
+    extraPageContent = '<ac:structured-macro ac:name="warning"><ac:parameter ac:name="title" /><ac:rich-text-body>This is a generated page, do not edit!</ac:rich-text-body></ac:structured-macro>'
+}
+```
+
+This example will push the architecture documentation into the KiwiOS space 
 
 ```bash
 cd <your-documentation-folder>
-./doctoolchain.sh generateHTML
-./doctoolchain.sh generatePDF
+./doctoolchain.sh publishToConfluence
 ```
 
 You can also list available commands with:
