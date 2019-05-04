@@ -17,6 +17,9 @@ DTC_OUTPUT_DIR="${DTC_OUTPUT_DIR:-${DTC_DOC_ROOT}/build}"
 ## The port where the plantuml server will listen at localhost
 PLANTUML_PORT="${PLANTUML_PORT:-8081}"
 
+## The credentials for confluence interactions. used by the publishToHTML goal.
+CONFLUENCE_USER="${CONFLUENCE_USER:-user}"
+CONFLUENCE_PWD="${CONFLUENCE_PWD:-password}"
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -98,7 +101,8 @@ clean () {
 }
 
 run () {
-    docker run --rm -it --entrypoint /bin/bash -v $DTC_DOC_ROOT:/project -v $DTC_DOC_ROOT/gradle.properties:/docToolchain/gradle.properties $DTC_IMAGE:$DTC_VERSION \
+    docker run --rm -t --entrypoint /bin/bash -v $DTC_DOC_ROOT:/project -v $DTC_DOC_ROOT/gradle.properties:/docToolchain/gradle.properties \
+    -e CONFLUENCE_USER=$CONFLUENCE_USER -e CONFLUENCE_PWD=$CONFLUENCE_PWD $DTC_IMAGE:$DTC_VERSION \
     -c "doctoolchain . $1 $2 $3 $4 $5 $6 $7 $8 $9 && exit"
     # Check if the output folder exist
     if [ ! -d "$DTC_OUTPUT_DIR" ]; then
@@ -114,16 +118,16 @@ run () {
 }
 
 help () {
-    echo "Please run with one of the following commands: [clean|initExising|initArc42EN|initArc42DE|initArc42ES|<any doctool command>]"
-    echo "  clean - delete everything inside the DTC_OUTPUT_DIR ($DTC_OUTPUT_DIR)"
-    echo "  initExisting - initialize a documentation root directory with existing documents in folder given by env DTC_DOC_ROOT ($DTC_DOC_ROOT) or by second parameter"
-    echo "  initArc42EN - initialize a new documentation root directory with english Arc42 template in folder given by env DTC_DOC_ROOT ($DTC_DOC_ROOT) or by second parameter"
-    echo "  initArc42DE - initialize a new documentation root directory with german Arc42 template in folder given by env DTC_DOC_ROOT ($DTC_DOC_ROOT) or by second parameter"
-    echo "  initArc42ES - initialize a new documentation root directory with spanish Arc42 template in folder given by env DTC_DOC_ROOT ($DTC_DOC_ROOT) or by second parameter"
-    echo "  generateHTML - Generates HTML documentation from $DTC_DOC_ROOT into $DTC_OUTPUT_DIR"
-    echo "  generatePDF - Generates PDF documentation from $DTC_DOC_ROOT into $DTC_OUTPUT_DIR"
-    echo "  publishToConfluence - Uploads the newly generated documentation into the configured Confluence instance. Use 'Config.groovy' for coordinates."
-    echo "  plantUML - Starts the PlantUML Server via docker. So you can easily write your diagrams. The server will be opened at http://localhost:$PLANTUML_PORT".
+    echo -e "Please run with one of the following commands: [clean|initExising|initArc42EN|initArc42DE|initArc42ES|<any doctool command>]"
+    echo -e "  clean - delete everything inside the DTC_OUTPUT_DIR ${GREEN}${DTC_OUTPUT_DIR}${NC}"
+    echo -e "  initExisting - initialize a documentation root directory with existing documents in folder given by env DTC_DOC_ROOT ${GREEN}${DTC_DOC_ROOT}${NC} or by second parameter"
+    echo -e "  initArc42EN - initialize a new documentation root directory with english Arc42 template in folder given by env DTC_DOC_ROOT ${GREEN}${DTC_DOC_ROOT}${NC} or by second parameter"
+    echo -e "  initArc42DE - initialize a new documentation root directory with german Arc42 template in folder given by env DTC_DOC_ROOT ${GREEN}${DTC_DOC_ROOT}${NC} or by second parameter"
+    echo -e "  initArc42ES - initialize a new documentation root directory with spanish Arc42 template in folder given by env DTC_DOC_ROOT ${GREEN}${DTC_DOC_ROOT}${NC} or by second parameter"
+    echo -e "  generateHTML - Generates HTML documentation from $DTC_DOC_ROOT into $DTC_OUTPUT_DIR"
+    echo -e "  generatePDF - Generates PDF documentation from $DTC_DOC_ROOT into $DTC_OUTPUT_DIR"
+    echo -e "  publishToConfluence - Uploads the newly generated documentation into the configured Confluence instance. Use 'Config.groovy' for coordinates."
+    echo -e "  plantUML - Starts the PlantUML Server via docker. So you can easily write your diagrams. The server will be opened at http://localhost:$PLANTUML_PORT".
 }
 
 
