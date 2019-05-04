@@ -40,8 +40,10 @@ init () {
     exit 1;
   fi
   echo "    Executing initialization..."
-  docker run --rm -it --entrypoint /bin/bash -w /docToolchain -v $DTC_DOC_ROOT:/project $DTC_IMAGE:$DTC_VERSION \
-  -c "./gradlew -b init.gradle $2 -PnewDocDir=/project && exit"
+  docker run --rm -it --entrypoint /bin/bash -w /docToolchain \
+  -v $DTC_DOC_ROOT:/project \
+  $DTC_IMAGE:$DTC_VERSION \
+  -c "./gradlew -b init.gradle $2 -PnewDocDir=/project --stacktrace && exit"
   echo "  Creating gradle.properties file for further configuration..."
   cat >$DTC_DOC_ROOT/gradle.properties <<EOF
 // settings to link to open issues
@@ -101,19 +103,16 @@ clean () {
 }
 
 run () {
-    docker run --rm -t --entrypoint /bin/bash -v $DTC_DOC_ROOT:/project -v $DTC_DOC_ROOT/gradle.properties:/docToolchain/gradle.properties \
+    docker run --rm -t -u $(id -u ${USER}):$(id -g ${USER}) --entrypoint /bin/bash \
+    -w "/project" \
+    -v $DTC_DOC_ROOT:/project -v $DTC_DOC_ROOT/gradle.properties:/docToolchain/gradle.properties \
+    -e GRADLE_USER_HOME=/project/.gradle \
     -e CONFLUENCE_USER=$CONFLUENCE_USER -e CONFLUENCE_PWD=$CONFLUENCE_PWD $DTC_IMAGE:$DTC_VERSION \
-    -c "doctoolchain . $1 $2 $3 $4 $5 $6 $7 $8 $9 && exit"
-    # Check if the output folder exist
-    if [ ! -d "$DTC_OUTPUT_DIR" ]; then
-        echo -e "${RED}ERROR. Could not build documentation.${NC}"
-        exit 3;
+    -c "doctoolchain . $1 $2 $3 $4 $5 $6 $7 $8 $9 --stacktrace && exit"
+    if [ ! $? -eq 0 ]; then
+      echo -e "${RED}ERROR. Could not build documentation.${NC}"
+      exit 3;
     fi
-    ## FIXME. This is needed, because the container is running with root. 
-    ## We could use '--user $(id -u):$(id -g)' as docker parameter, but gradle will write into /docToolchain folder. There we can't write.
-    echo "  Changing owner of output folder $DTC_OUTPUT_DIR to the current user..."
-    sudo chown -R ${USER}:${USER} ./build 
-    sudo chown -R ${USER}:${USER} ./.gradle 
     echo -e "${GREEN}DONE. docToolchain execution was successfull.${NC}"   
 }
 
