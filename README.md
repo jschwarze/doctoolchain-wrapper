@@ -21,7 +21,9 @@ I was getting into trouble:
     1. Use an older version of the docToolchain container. --> I got other problems. :-(
     2. Find a nice work around. --> Here comes the script. ;-) 
 
-## How to use it?
+## How to use it
+
+### How to install
 
 You can simply download the shell script via:
 
@@ -31,6 +33,8 @@ You can simply download the shell script via:
 
 Put it into a folder like ~/bin for getting it into your PATH.
 Now you are ready to initialize your first project:
+
+### How to initialize my project
 
 ```bash
 doctoolchain.sh initArc42EN <your-documentation-folder>
@@ -44,6 +48,17 @@ Additionally, we have:
 * A '.gitignore' file that will exclude the folders 'build' and '.gradle' from version control.
 * A 'graddle.properties' file that is used during the docToolchain runs. Modify it according the official documentation.
 
+### How to configure
+
+Here are the environment variables to configure the doctoolchain wrapper:
+
+* **DTC_VERSION** - Configure the version of the used [docToolchain docker image](https://hub.docker.com/r/rdmueller/doctoolchain). Default **is v1.1.1**.
+* **DTC_IMAGE** - The image that is used. defaults to [rdmueller/doctoolchain](https://hub.docker.com/r/rdmueller/doctoolchain)
+* **DTC_DOC_ROOT** - The home of your documentation sources
+* **DTC_OUTPUT_DIR** - The folder where the output is generated in.
+
+### How to generate the Docs
+
 That's it. Time to generate your first documentation:
 
 ```bash
@@ -51,6 +66,10 @@ cd <your-documentation-folder>
 ./doctoolchain.sh generateHTML
 ./doctoolchain.sh generatePDF
 ```
+
+After the execution, you'll find the HTML5 and the PDF outputs inside of the`DTC_OUTPUT_DIR` folder.
+
+### How to push to Confluence
 
 To push the documentation into a confluence, you have to configure the coordinates inside of 'Config.groovy'.
 Please ignore 'scrips/ConfluenceConfig.groovy', that file isn't used anymore.
@@ -79,6 +98,8 @@ You have to enter user credentials for Confluence. NEVER commit this part into g
 cd <your-documentation-folder>
 ./doctoolchain.sh publishToConfluence
 ```
+
+### What else
 
 You can also list available commands with:
 
