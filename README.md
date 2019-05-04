@@ -71,7 +71,9 @@ confluence.with {
 }
 ```
 
-This example will push the architecture documentation into the KiwiOS space 
+This example will push the architecture documentation into the confluence space given by `<confluence-space-key>` on the host `<your-confluence-host>`.
+It will create the pages as subpages of `<page-id-of-parent-page>`. 
+You have to enter user credentials for Confluence. NEVER commit this part into git! Use a dynamic way with Jenkins Credentials that adds that variables during runtime.
 
 ```bash
 cd <your-documentation-folder>
