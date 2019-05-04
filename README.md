@@ -1,6 +1,6 @@
 # DocToolchain Wrapper Script
 
-## Why this project?
+## Why this project
 
 I like the following things:
 
@@ -97,6 +97,39 @@ You have to enter user credentials for Confluence. NEVER commit this part into g
 ```bash
 cd <your-documentation-folder>
 ./doctoolchain.sh publishToConfluence
+```
+
+### How to insert diagrams
+
+You can easily include UML diagrams with the help of [PlantUML](http://plantuml.com).
+You will find the documentation for PlantUML and Diagramm usage in general at the [pages of asciidoctor](https://asciidoctor.org/news/2014/02/18/plain-text-diagrams-in-asciidoctor/)
+
+There are two ways for inclusion:
+
+1. Directly inside the AsciiDoc file
+2. Externally written and only referenced inside the AsciiDoc.
+  
+#### Diagram inside
+
+Place the content direct into the asciidoc file, e.g.:
+
+```asciidoc
+[[main-classes]]
+.The PlantUML block extension class
+[plantuml, sample-plantuml-diagram, alt="Class diagram", width=135, height=118]
+----
+class BlockProcessor
+class PlantUmlBlock
+BlockProcessor <|-- PlantUmlBlock
+----
+```
+
+#### Referenced Diagram
+
+Put the diagram definition in a text file and make a reference to it inside your asciidoc:
+
+```asciidoc
+plantuml::classes.txt[format=svg, alt="Class diagram", width=300, height=200]
 ```
 
 ### What else
