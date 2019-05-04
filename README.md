@@ -16,10 +16,10 @@ I was getting into trouble:
 3. The generateHTML and generatePDF goals did not work because of that known [issue 259](https://github.com/docToolchain/docToolchain/issues/259)
 4. So I was looking for an existing docker container and got it: [rdmueller/doctoolchain](https://hub.docker.com/r/rdmueller/doctoolchain). But got the same issue.
 5. I've realized that the solution given in [issue 259](https://github.com/docToolchain/docToolchain/issues/259) is to change the gradle.properties, which is part of the image.
-6. I still wanted to have a flexible solution where my colleagues could easily adapt. 
+6. I still wanted to have a flexible solution where my colleagues could easily adapt.
 7. So I had two options:
     1. Use an older version of the docToolchain container. --> I got other problems. :-(
-    2. Find a nice work around. --> Here comes the script. ;-) 
+    2. Find a nice work around. --> Here comes the script. ;-)
 
 ## How to use it
 
@@ -111,7 +111,7 @@ There are two ways for inclusion:
   
 #### Diagram inside
 
-Place the content direct into the asciidoc file, e.g.:
+Place the content directly into the asciidoc file, e.g.:
 
 ```asciidoc
 [[main-classes]]
@@ -140,10 +140,10 @@ You can also list available commands with:
 ./doctoolchain.sh help
 ```
 
-## Why not contributing to [docToolchain](https://github.com/docToolchain/docToolchain)?
+## Why not contributing to [docToolchain](https://github.com/docToolchain/docToolchain)
+
 It's a good idea and I'm thinking about it.
 
 First, I'm not sure if it fits my needs. So it is an experiment.
 
 If I'm happy, and some of my colleagues also, I'll contact the maintainer and suggest it.
-
