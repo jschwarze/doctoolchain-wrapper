@@ -134,7 +134,7 @@ plantuml::classes.txt[format=svg, alt="Class diagram", width=300, height=200]
 
 #### How to write diagrams
 
-Please read the [documentation pages of PlantUML](http://plantuml.com/) to learn, which diagrams are possible and hwo to write them.
+Please read the [documentation pages of PlantUML](http://plantuml.com/) to learn, which diagrams are possible and how to write them.
 
 For a simple editor and preview, you are able to start the PlantUML server with the command:
 
@@ -142,7 +142,7 @@ For a simple editor and preview, you are able to start the PlantUML server with 
 ./doctoolchain.sh plantUML
 ```
 
-This will download and start (docker required) the PlantUML server. It is available at [http://localhost:8081](http://localhost:8081)
+This will download and start (docker required) the PlantUML server. It is reachable at [http://localhost:8081](http://localhost:8081)
 If port 8081 is already in use, you can change it with the environment variable `PLANTUML_PORT`.
 
 ### What else
