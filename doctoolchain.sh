@@ -14,6 +14,9 @@ DTC_DOC_ROOT="$(cd $DTC_DOC_ROOT; pwd)"
 ## The output directory
 DTC_OUTPUT_DIR="${DTC_OUTPUT_DIR:-${DTC_DOC_ROOT}/build}"
 
+## The port where the plantuml server will listen at localhost
+PLANTUML_PORT="${PLANTUML_PORT:-8081}"
+
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -119,6 +122,8 @@ help () {
     echo "  initArc42ES - initialize a new documentation root directory with spanish Arc42 template in folder given by env DTC_DOC_ROOT ($DTC_DOC_ROOT) or by second parameter"
     echo "  generateHTML - Generates HTML documentation from $DTC_DOC_ROOT into $DTC_OUTPUT_DIR"
     echo "  generatePDF - Generates PDF documentation from $DTC_DOC_ROOT into $DTC_OUTPUT_DIR"
+    echo "  publishToConfluence - Uploads the newly generated documentation into the configured Confluence instance. Use 'Config.groovy' for coordinates."
+    echo "  plantUML - Starts the PlantUML Server via docker. So you can easily write your diagrams. The server will be opened at http://localhost:$PLANTUML_PORT".
 }
 
 
@@ -139,7 +144,10 @@ case "$1" in
       ;;
     "initArc42ES")
       init $2 "initArc42ES"
-      ;;      
+      ;;    
+    "plantUML")
+      docker run -it --rm -p $PLANTUML_PORT:8080 plantuml/plantuml-server:jetty
+      ;;  
     "clean")
       clean
       ;;
