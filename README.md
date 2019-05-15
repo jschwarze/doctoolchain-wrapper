@@ -107,7 +107,7 @@ cd <your-documentation-folder>
 ### How to insert diagrams
 
 You can easily include UML diagrams with the help of [PlantUML](http://plantuml.com).
-You will find the documentation for PlantUML and Diagramm usage in general at the [pages of asciidoctor](https://asciidoctor.org/news/2014/02/18/plain-text-diagrams-in-asciidoctor/)
+You will find the documentation for PlantUML and diagram usage in general at the [pages of asciidoctor](https://asciidoctor.org/news/2014/02/18/plain-text-diagrams-in-asciidoctor/)
 
 There are two ways for inclusion:
 
@@ -149,6 +149,19 @@ For a simple editor and preview, you are able to start the PlantUML server with 
 
 This will download and start (docker required) the PlantUML server. It is reachable at [http://localhost:8081](http://localhost:8081)
 If port 8081 is already in use, you can change it with the environment variable `PLANTUML_PORT`.
+
+#### Which diagram
+
+With help of the [C4 model](https://c4model.com/), it becomes simpler to get a good starting point for the needed diagrams.
+The model defines four types, all starting with C:
+
+* Context
+* Container
+* Components
+* Classes
+
+So the first type **Context** maps to chapter 3 of Arc42, scope and context.
+The second **Containers** and the third **Components** fits fine into chapter 5, the building block view. The last, the **Class** diagram fits into chapter 8, concepts: Here it could help to explain general concepts that should be used by developers to follow architectural patterns. Also, that diagrams will help inside of the documentation of a single component to explain the main thoughts. A good starting point for C4 with PlantUML could be found on Github: [C4Model and Examples from Ricardo Niepel](https://github.com/RicardoNiepel/C4-PlantUML/tree/master/samples)
 
 ### What else
 
