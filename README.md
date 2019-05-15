@@ -9,6 +9,8 @@ I like the following things:
 * [Asciidoctor](https://asciidoctor.org/)
 * [PlantUML](http://plantuml.com)
 * [C4Model and Examples from Ricardo Niepel](https://github.com/RicardoNiepel/C4-PlantUML/tree/master/samples)
+* [Icons and Graphics for PlantUM](https://github.com/Roemer/plantuml-office)
+* [PlantUML Documentation](https://plantuml-documentation.readthedocs.io/en/latest/)
 * Containerize your applications with [Docker](https://www.docker.com/products/docker-engine)
 
 Then I've tried out the getting started manual from [docToolchain](https://doctoolchain.github.io/docToolchain/#_how_to_install_doctoolchain).
