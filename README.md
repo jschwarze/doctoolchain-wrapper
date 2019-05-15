@@ -6,6 +6,9 @@ I like the following things:
 
 * Well structured and commonly known architecture documentation with [Arc42](https://arc42.de).
 * Documentation as code and the idea behind [docToolchain](https://doctoolchain.github.io/docToolchain)
+* (Asciidoctor)[https://asciidoctor.org/]
+* (PlantUML)[http://plantuml.com]
+* (C4Model and Examples from Ricardo Niepel)[https://github.com/RicardoNiepel/C4-PlantUML/tree/master/samples]
 * Containerize your applications with [Docker](https://www.docker.com/products/docker-engine)
 
 Then I've tried out the getting started manual from [docToolchain](https://doctoolchain.github.io/docToolchain/#_how_to_install_doctoolchain).
