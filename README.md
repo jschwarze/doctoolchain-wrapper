@@ -83,10 +83,9 @@ Here is an example, how to configure the confluence connection:
 ```groovy
 confluence.with {
     input = [
-            [ file: "build/html5/arc42-template.html" ],
+            [ file: "build/html5/arc42-template.html", ancestorId: '<page-id-of-parent-page>', preambleTitle: '<custom-title != arc42>' ],
     ]
     api = 'https://<your-confluence-host>/rest/api/'
-    ancestorId = '<page-id-of-parent-page>'
     spaceKey = '<confluence-space-key>'
     createSubpages = true
     pagePrefix = ''
