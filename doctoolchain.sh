@@ -88,6 +88,9 @@ EOF
 
     echo "  Now we will copy that script into the documentation folder for further executions..."
     cp ${BASH_SOURCE[0]} $DTC_DOC_ROOT
+    echo " Copy configuration for AsciiDocs..."
+    cp ./AsciiDocBasics.gradle $DTC_DOC_ROOT/scripts/
+
     echo -e "${GREEN}DONE.${NC} Directory $DTC_DOC_ROOT successfully initialized."
     echo "We recommend to initialize the folder as a git repository with 'git init' and create and initial commit."
 }
